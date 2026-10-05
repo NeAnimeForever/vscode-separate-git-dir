@@ -1,8 +1,8 @@
 {
   "name": "vscode-separate-git-dir",
   "displayName": "VS Code Separate Git Dir",
-  "description": "Keep Git data outside the workspace folder.",
-  "version": "0.1.2",
+  "description": "Keep Git repositories outside the workspace folder.",
+  "version": "0.2.0",
   "publisher": "neanimeforever",
   "license": "MIT",
   "repository": {
@@ -25,21 +25,59 @@
   "contributes": {
     "commands": [
       {
+        "command": "vscodeSeparateGitDir.manage",
+        "title": "Git Folder: Manage Repository"
+      },
+      {
         "command": "vscodeSeparateGitDir.create",
-        "title": "VS Code Separate Git Dir: Create / Check Repository"
+        "title": "Git Folder: Create / Check Repository"
       },
       {
         "command": "vscodeSeparateGitDir.selectRoot",
-        "title": "VS Code Separate Git Dir: Change Git Directory"
+        "title": "Git Folder: Change Git Root"
+      },
+      {
+        "command": "vscodeSeparateGitDir.move",
+        "title": "Git Folder: Move Repository"
+      },
+      {
+        "command": "vscodeSeparateGitDir.repair",
+        "title": "Git Folder: Find / Repair Repository"
+      },
+      {
+        "command": "vscodeSeparateGitDir.open",
+        "title": "Git Folder: Open Repository Folder"
+      },
+      {
+        "command": "vscodeSeparateGitDir.disconnect",
+        "title": "Git Folder: Disconnect Repository"
+      },
+      {
+        "command": "vscodeSeparateGitDir.mode",
+        "title": "Git Folder: Change Storage Mode"
       }
     ],
     "configuration": {
-      "title": "VS Code Separate Git Dir",
+      "title": "Git Folder",
       "properties": {
         "vscodeSeparateGitDir.gitRoot": {
           "type": "string",
           "default": "",
-          "description": "Folder where separate Git directories are stored. Choose it from the Git status-bar button.",
+          "description": "Parent folder where project Git repositories are stored. Choose it from the Git Folder status-bar button.",
+          "scope": "window"
+        },
+        "vscodeSeparateGitDir.storageMode": {
+          "type": "string",
+          "enum": [
+            "separate-git-dir",
+            "junction"
+          ],
+          "enumDescriptions": [
+            "Use Git's --separate-git-dir and keep .git as a text link.",
+            "Use a Windows junction so .git appears as a directory. Windows only."
+          ],
+          "default": "separate-git-dir",
+          "description": "How Git data is linked into the workspace.",
           "scope": "window"
         }
       }

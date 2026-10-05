@@ -1,14 +1,23 @@
 # VS Code Separate Git Dir
 
-> Keep Git data outside the workspace.
+> Keep Git repositories outside the workspace.
 
-VS Code Separate Git Dir adds a small button to the VS Code status bar for creating separate Git directories outside the workspace.
+A small VS Code extension for using Git's `--separate-git-dir` without typing the command manually.
 
-## How it works
+## What it does
 
-Choose a root directory once. Each project gets its own Git directory inside it using Git's `--separate-git-dir` option.
+Choose one Git root and keep project repositories there while the working folders stay wherever you keep your projects.
 
-The workspace itself stays where it is.
+The extension can also:
+
+- create a separate Git repository for the current workspace;
+- move an existing repository to the configured Git root;
+- find and repair a broken `.git` link;
+- open the external repository folder;
+- disconnect a workspace without deleting its repository;
+- switch between a Git file link and a Windows junction.
+
+The default storage mode uses Git's `--separate-git-dir`. The junction mode is optional and Windows-only; it makes `.git` look like a directory for tools that expect one.
 
 ## Requirements
 
