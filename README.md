@@ -1,5 +1,7 @@
 # VS Code Separate Git Dir
 
+[**Download latest VSIX**](https://github.com/NeAnimeForever/vscode-separate-git-dir/releases/latest/download/vscode-separate-git-dir-0.2.0.vsix)
+
 > Keep Git repositories outside the workspace.
 
 A small VS Code extension for using Git's `--separate-git-dir` without typing the command manually.
