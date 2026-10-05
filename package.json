@@ -1,0 +1,48 @@
+{
+  "name": "neanime-git-folder",
+  "displayName": "Git Folder",
+  "description": "Keep Git data outside the workspace folder.",
+  "version": "0.1.2",
+  "publisher": "neanimeforever",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeAnimeForever/neanime-git-folder"
+  },
+  "engines": {
+    "vscode": ">=1.90.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "neanimeGitFolder.create",
+        "title": "Git Folder: Create / Check Repository"
+      },
+      {
+        "command": "neanimeGitFolder.selectRoot",
+        "title": "Git Folder: Change Git Directory"
+      }
+    ],
+    "configuration": {
+      "title": "Git Folder",
+      "properties": {
+        "neanimeGitFolder.gitRoot": {
+          "type": "string",
+          "default": "",
+          "description": "Folder where separate Git directories are stored. Choose it from the Git status-bar button.",
+          "scope": "window"
+        }
+      }
+    }
+  }
+}
