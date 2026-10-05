@@ -1,8 +1,8 @@
-# Git Folder
+# VS Code Separate Git Dir
 
 > Keep Git data outside the workspace.
 
-Git Folder adds a small button to the VS Code status bar for creating separate Git directories outside the workspace.
+VS Code Separate Git Dir adds a small button to the VS Code status bar for creating separate Git directories outside the workspace.
 
 ## How it works
 

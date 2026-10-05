@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { execFile } = require('child_process');
 
-const CONFIG_SECTION = 'neanimeGitFolder';
+const CONFIG_SECTION = 'vscodeSeparateGitDir';
 const CONFIG_ROOT = 'gitRoot';
-const BUTTON_ID = 'neanimeGitFolder.status';
+const BUTTON_ID = 'vscodeSeparateGitDir.status';
 
 
 function execGit(args, cwd) {
@@ -69,11 +69,11 @@ function updateStatusBar(item) {
     item.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
     item.color = new vscode.ThemeColor('statusBarItem.warningForeground');
     item.tooltip = new vscode.MarkdownString([
-      `**${'Git Folder'}**`,
+      `**${'VS Code Separate Git Dir'}**`,
       '',
       'First, open a local project folder in VS Code.',
     ].join('\n'));
-    item.command = 'neanimeGitFolder.create';
+    item.command = 'vscodeSeparateGitDir.create';
     return;
   }
 
@@ -81,13 +81,13 @@ function updateStatusBar(item) {
     item.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
     item.color = new vscode.ThemeColor('statusBarItem.warningForeground');
     item.tooltip = new vscode.MarkdownString([
-      `**${'Git Folder'}**`,
+      `**${'VS Code Separate Git Dir'}**`,
       '',
       'The Git directory has not been selected yet.',
       '',
       'Click `Git` and the extension will guide you through the setup.',
     ].join('\n'));
-    item.command = 'neanimeGitFolder.create';
+    item.command = 'vscodeSeparateGitDir.create';
     return;
   }
 
@@ -95,18 +95,18 @@ function updateStatusBar(item) {
   item.color = undefined;
   const targetPath = getProjectGitPath(workspacePath, gitRoot);
   const tooltip = new vscode.MarkdownString([
-    `**${'Git Folder'}**`,
+    `**${'VS Code Separate Git Dir'}**`,
     '',
     'Repository for this project:',
     '',
     `\`${targetPath}\``,
     '',
-    `${makePathLink('neanimeGitFolder.selectRoot', 'Change path')}  ·  ${makePathLink('neanimeGitFolder.create', 'Create / check')}`,
+    `${makePathLink('vscodeSeparateGitDir.selectRoot', 'Change path')}  ·  ${makePathLink('vscodeSeparateGitDir.create', 'Create / check')}`,
   ].join('\n'));
   tooltip.isTrusted = true;
   tooltip.supportHtml = false;
   item.tooltip = tooltip;
-  item.command = 'neanimeGitFolder.create';
+  item.command = 'vscodeSeparateGitDir.create';
 }
 
 async function chooseGitRoot() {
@@ -160,7 +160,7 @@ async function createGitDirectory() {
   }
 
   if (process.platform !== 'win32') {
-    vscode.window.showErrorMessage('Git Folder is designed for Windows.');
+    vscode.window.showErrorMessage('VS Code Separate Git Dir is designed for Windows.');
     return;
   }
 
@@ -246,8 +246,8 @@ function activate(context) {
   statusBarItem = vscode.window.createStatusBarItem(BUTTON_ID, vscode.StatusBarAlignment.Left, 1000);
   context.subscriptions.push(statusBarItem);
 
-  context.subscriptions.push(vscode.commands.registerCommand('neanimeGitFolder.create', createGitDirectory));
-  context.subscriptions.push(vscode.commands.registerCommand('neanimeGitFolder.selectRoot', selectRoot));
+  context.subscriptions.push(vscode.commands.registerCommand('vscodeSeparateGitDir.create', createGitDirectory));
+  context.subscriptions.push(vscode.commands.registerCommand('vscodeSeparateGitDir.selectRoot', selectRoot));
 
   context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => updateStatusBar(statusBarItem)));
   context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(event => {
